@@ -11,5 +11,6 @@ cy.contains ('Contact Us')
 cy.contains ('Portfolio')
 cy.contains ('Gallery')
 
-
 })
+
+
