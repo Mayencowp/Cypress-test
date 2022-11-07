@@ -1,19 +1,26 @@
 /// <reference types="cypress" />
-
+import{MainPage} from '../PAGE-OBJECTS/main'
+import{LoginPage} from '../PAGE-OBJECTS/login'
+import{WelcomePage} from '../PAGE-OBJECTS/welcome-page'
 
 describe('TEST DE LOGIN', () => {
+const loginPage = new LoginPage()
+const mainPage = new MainPage()
+const welcomePage = new WelcomePage()
+    
+    
     beforeEach(()=> {
-        cy.visit("https://the-internet.herokuapp.com")
-        cy.get(':nth-child(21) > a').click()
-    })
-        
+        mainPage.navigate()
+        mainPage.clickLoginOption ()
+    })      
 
 it ('A valid user can login', () => { 
     
-    cy.get('#username').type("tomsmith")
-    cy.get('#password').type("SuperSecretPassword!")
-    cy.get('.fa').click()
-    cy.get('#flash').contains("You logged into a secure area!")
+   loginPage.fillUser('tomsmith')
+   loginPage.Fillpass("SuperSecretPassword!")
+   loginPage.ClickLogin()
+   welcomePage.CheckMessage("You logged into a secure area!")
+
 })
 
 it("A not valid user try login", () =>{
